@@ -52,7 +52,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
     try {
       final recipe = await RecipeService.fetchRandomRecipe();
-      Navigator.pop(context); // Remove loading dialog
+      Navigator.pop(context);
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -73,41 +73,71 @@ class _CategoryScreenState extends State<CategoryScreen> {
       appBar: AppBar(
         title: const Text('Категории на јадења'),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.shuffle),
-            tooltip: 'Random Recipe',
-            onPressed: showRandomRecipe,
-          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: InkWell(
+              onTap: showRandomRecipe,
+              borderRadius: BorderRadius.circular(30),
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.orangeAccent.withOpacity(0.2),
+                ),
+                child: const Icon(
+                  Icons.shuffle,
+                  size: 30, // BIGGER button
+                  color: Colors.orange,
+                ),
+              ),
+            ),
+          )
         ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(50),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
+      ),
+
+
+      body: isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+
+          Padding(
+            padding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: TextField(
               onChanged: filterCategories,
               decoration: InputDecoration(
                 hintText: 'Пребарај категории',
                 prefixIcon: const Icon(Icons.search),
+                contentPadding:
+                const EdgeInsets.symmetric(vertical: 12),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
             ),
           ),
-        ),
-      ),
-      body: isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : SizedBox(
-        height: 500,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: filteredCategories.length,
-          itemBuilder: (context, index) {
-            final category = filteredCategories[index];
-            return CategoryCard(category: category);
-          },
-        ),
+
+          // SPACING BETWEEN SEARCH AND CATEGORIES
+          const SizedBox(height: 10),
+
+          // CATEGORY LIST
+          Expanded(
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: filteredCategories.length,
+              padding: const EdgeInsets.only(left: 12),
+              itemBuilder: (context, index) {
+                final category = filteredCategories[index];
+                return Padding(
+                  padding: const EdgeInsets.only(right: 12),
+                  child: CategoryCard(category: category),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

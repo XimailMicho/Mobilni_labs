@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../models/recipe.dart';
 import '../services/apiService.dart';
 
+
+
 class RecipeDetailScreen extends StatefulWidget {
   final String? mealId;
   final bool isRandom;
@@ -47,11 +49,11 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(recipe?.name ?? 'Recipe Details')),
+      appBar: AppBar(title: Text(recipe?.name ?? 'Детали за рецептот')),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : recipe == null
-          ? const Center(child: Text('No recipe found'))
+          ? const Center(child: Text('Не пронајдовме рецепт!'))
           : SingleChildScrollView(
         padding: const EdgeInsets.all(8),
         child: Column(
@@ -76,7 +78,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
             if (recipe!.youtubeLink != "")
               ElevatedButton(
                 onPressed: () {
-                  // Use url_launcher to open recipe.youtubeLink
+                  // TODO Use url_launcher to open recipe.youtubeLink
                 },
                 child: const Text('Watch on YouTube'),
               ),

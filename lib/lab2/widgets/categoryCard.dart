@@ -9,7 +9,6 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Define fixed width and height for the card to avoid overflow
     final double cardWidth = 250;
     final double cardHeight = 400;
 
@@ -32,9 +31,8 @@ class CategoryCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Image takes the top portion of the card
                 SizedBox(
-                  height: cardHeight * 0.5, // 50% of card height
+                  height: cardHeight * 0.5,
                   width: cardWidth,
                   child: Image.network(
                     category.thumbnailLink,
@@ -43,7 +41,7 @@ class CategoryCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
 
-                // Category name
+
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Text(
@@ -57,14 +55,14 @@ class CategoryCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
 
-                // Description - truncated safely
+
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Expanded(
                     child: Text(
                       category.description,
                       overflow: TextOverflow.ellipsis,
-                      maxLines: 8,
+                      maxLines: 20,
                       textAlign: TextAlign.center,
                       style: const TextStyle(fontSize: 14),
                     ),
