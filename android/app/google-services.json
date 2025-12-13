@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "528005109258",
+    "project_id": "mobilni-labs-micho",
+    "storage_bucket": "mobilni-labs-micho.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528005109258:android:54da803fb5a2c3bda5b1f3",
+        "android_client_info": {
+          "package_name": "mk.finki.lab1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOgJ03uzsXhCbcBVi6PuPtb2qFlza4agk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
