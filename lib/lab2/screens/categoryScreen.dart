@@ -3,6 +3,7 @@ import '../models/category.dart';
 import '../services/apiService.dart';
 import '../widgets/categoryCard.dart';
 import '../screens/recipeScreen.dart';
+import '../screens/favoritesScreen.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({super.key});
@@ -73,11 +74,21 @@ class _CategoryScreenState extends State<CategoryScreen> {
       appBar: AppBar(
         title: const Text('Категории на јадења'),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.favorite),
+            tooltip: 'Favorites',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) =>  FavoritesScreen()),
+              );
+            },
+          ),
           Padding(
             padding: const EdgeInsets.only(right: 12),
             child: InkWell(
-              onTap: showRandomRecipe,
               borderRadius: BorderRadius.circular(30),
+              onTap: showRandomRecipe,
               child: Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
@@ -86,13 +97,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 ),
                 child: const Icon(
                   Icons.shuffle,
-                  size: 30, // BIGGER button
+                  size: 30,
                   color: Colors.orange,
                 ),
               ),
             ),
-          )
+          ),
         ],
+
       ),
 
 

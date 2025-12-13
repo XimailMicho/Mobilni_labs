@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lab1/lab2/services/favoritesService.dart';
 import '../models/recipe.dart';
 import '../services/apiService.dart';
 
@@ -61,9 +62,27 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
           children: [
             Image.network(recipe!.thumbnail, height: 250, fit: BoxFit.cover),
             const SizedBox(height: 12),
-            Text(recipe!.name,
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            Row(
+              children: [
+                Expanded(child: Text(recipe!.name,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold))),
+                IconButton(
+                    icon: Icon(
+                        FavoritesService.isFavorite(recipe!.id)
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                      color: Colors.red,
+                    ),
+                    onPressed: (){
+                      FavoritesService.toggleFavorite(recipe!);
+                      setState(() {
+
+                      });
+                    },
+                )
+              ],
+            ),
             const SizedBox(height: 12),
             const Text('Ingredients:',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
